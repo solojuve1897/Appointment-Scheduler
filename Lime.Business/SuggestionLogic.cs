@@ -85,13 +85,24 @@ namespace Lime.Business
                 foreach (var startTime in suggestion.StartTimes)
                 {
                     var startTimeDate = DateTimeOffset.Parse($"{suggestion.Date} {startTime}");
+
+                    // Check available times before earliest busy time.
+                    if (!busyTimes.Any(x => x <= startTimeDate || x < startTimeDate.AddMinutes(parameters.MeetingLength)))
+                    {
+                        availableStartTimes.Add(startTimeDate.GetTime());
+                        continue;
+                    }
+
                     var isAvailable = false;
 
                     for (int i = 0; i < busyTimes.Count; i++)
                     {
+                        // Early out so we don't continue check the start time if it's less then current busy time.
                         if (startTimeDate < busyTimes[i])
                             break;
 
+                        // On the last busy time we want to check if it's still within the office hour
+                        // while taking into consideration the meeting length
                         if (i == busyTimes.Count - 1)
                         {
                             if (busyTimes[i].AddMinutes(parameters.MeetingLength) <= officeHoursEnds)
@@ -100,6 +111,7 @@ namespace Lime.Business
                                 break;
                             }
                         }
+                        // Check if we have available time between the current and the next busy times
                         else if ((busyTimes[i + 1] - busyTimes[i]).TotalMinutes != BusyTimeIdentifier &&
                                  startTimeDate.AddMinutes(parameters.MeetingLength) <= busyTimes[i + 1])
                         {
