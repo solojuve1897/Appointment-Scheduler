@@ -15,7 +15,7 @@ namespace Lime.Data
             _dataContext = dataContext;
         }
 
-        public IList<BusyTime> GetBusyTimes(string [] employeeIds)
+        public IList<BusyTime> GetBusyTimes(string[] employeeIds)
         {
             return _dataContext.BusyTimes.Where(x => employeeIds.Contains(x.EmployeeId)).ToList();
         }

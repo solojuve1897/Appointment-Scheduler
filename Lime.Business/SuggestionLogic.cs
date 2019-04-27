@@ -89,17 +89,18 @@ namespace Lime.Business
 
                     for (int i = 0; i < busyTimes.Count; i++)
                     {
+                        if (startTimeDate < busyTimes[i])
+                            break;
+
                         if (i == busyTimes.Count - 1)
                         {
-                            if (busyTimes[i].AddMinutes(parameters.MeetingLength) <= officeHoursEnds && 
-                                startTimeDate >= busyTimes[i])
+                            if (busyTimes[i].AddMinutes(parameters.MeetingLength) <= officeHoursEnds)
                             {
                                 isAvailable = true;
                                 break;
                             }
                         }
                         else if ((busyTimes[i + 1] - busyTimes[i]).TotalMinutes != BusyTimeIdentifier &&
-                                 startTimeDate >= busyTimes[i] && 
                                  startTimeDate.AddMinutes(parameters.MeetingLength) <= busyTimes[i + 1])
                         {
                             isAvailable = true;
