@@ -11,6 +11,7 @@ namespace Lime.Business
     {
         private readonly IBusyTimeRepository _busyTimeRepository;
         private const int BusyTimeIdentifier = 15;
+        private const int AppointmentTimeInterval = 30;
 
         public SuggestionLogic(IBusyTimeRepository busyTimeRepository)
         {
@@ -47,7 +48,7 @@ namespace Lime.Business
                 while (officeHoursStart <= officeHoursEnds)
                 {
                     suggestion.StartTimes.Add(officeHoursStart.GetTime());
-                    officeHoursStart = officeHoursStart.AddMinutes(30);
+                    officeHoursStart = officeHoursStart.AddMinutes(AppointmentTimeInterval);
                 }
 
                 suggestions.Add(suggestion);
@@ -94,6 +95,7 @@ namespace Lime.Business
                                 startTimeDate >= busyTimes[i])
                             {
                                 isAvailable = true;
+                                break;
                             }
                         }
                         else if ((busyTimes[i + 1] - busyTimes[i]).TotalMinutes != BusyTimeIdentifier &&
@@ -101,6 +103,7 @@ namespace Lime.Business
                                  startTimeDate.AddMinutes(parameters.MeetingLength) <= busyTimes[i + 1])
                         {
                             isAvailable = true;
+                            break;
                         }
                     }
 

@@ -36,9 +36,11 @@ namespace Lime.Data
                 var line = streamReader.ReadLine();
                 var values = line.Split(';');
 
+                // line is irrelevant, so skip it
                 if (values.Length < 2)
                     continue;
 
+                // line contains an Employee-record
                 if (values.Length == 2)
                 {
                     var employee = new Employee
@@ -49,6 +51,7 @@ namespace Lime.Data
 
                     _employees.Add(employee);
                 }
+                // line contains an BusyTime-record
                 else
                 {
                     var busyTime = new BusyTime
