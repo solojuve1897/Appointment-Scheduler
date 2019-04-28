@@ -1,29 +1,29 @@
 <template>
-  <v-dialog lazy max-width="700" :value="dialog">
+  <v-dialog content-class="ma-0" persistent lazy max-width="700" :value="dialog">
     <v-card v-if="suggestions.length > 0">
      <v-layout align-center wrap>
         <v-flex grow>
           <div class="headline text-xs-center pt-4">{{suggestions[page-1].date}}</div>
-          <div class="subheading text-xs-center">Suggested times</div>
+          <div class="subheading text-xs-center">Bookable times</div>
         </v-flex>
         <v-flex shrink>
           <div class="close"><v-icon size="30" @click="$emit('close')">close</v-icon></div>
         </v-flex>
      </v-layout>
      <v-layout class="pa-5" wrap>
-        <v-flex class="pa-3" xs4 v-for="(startTime, index) in suggestions[page-1].startTimes" :key="index">
+        <v-flex class="pa-3" md4 xs6 v-for="(startTime, index) in suggestions[page-1].startTimes" :key="index">
           <v-card>
             <v-card-text class="subheading text-xs-center font-weight-bold">{{startTime}}</v-card-text>
           </v-card>
         </v-flex>
      </v-layout>
-     <div class="text-xs-center pb-4">
+     <v-flex class="text-xs-center pb-4">
         <v-pagination
         v-model="page"
         :length="suggestions.length"
-        :total-visible="7"
+        :total-visible="5"
         ></v-pagination>
-     </div>
+     </v-flex>
     </v-card>
   </v-dialog>
 </template>

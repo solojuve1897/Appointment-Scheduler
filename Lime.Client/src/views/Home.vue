@@ -188,7 +188,7 @@
       <v-card-text class="text-xs-center">
         <v-icon color="red" size="56">error</v-icon>
       </v-card-text>
-      <v-card-text class="subheading pt-0">
+      <v-card-text class="subheading text-xs-center pt-0">
         An unexpected error occured. Please try again.
       </v-card-text>
       <v-card-actions>
