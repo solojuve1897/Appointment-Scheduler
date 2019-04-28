@@ -71,7 +71,7 @@ namespace Lime.Business
                                                            .OrderBy(x => x.StartTime)
                                                            .ToList();
 
-            var busyTimes = GetBusyTimesFlatList(busyTimesForEmployees);
+            var busyTimes = GetBusyTimesOrderedList(busyTimesForEmployees);
 
             foreach (var suggestion in suggestions)
             {
@@ -128,7 +128,7 @@ namespace Lime.Business
         }
 
         /// <summary>
-        /// Returns a flat list of the times in busyTimesForEmployees plus filler-times based on
+        /// Returns an ordered flat list of the times in busyTimesForEmployees plus filler-times based on
         /// "BusyTimeIdentifier" (which is set to 15 minutes). When two items of time in
         /// the list follows each other and has more than 15 minutes between them that time in
         /// question is then available to book.
@@ -137,7 +137,7 @@ namespace Lime.Business
         /// This also means that the system can only check availability for meeting-length equal to
         /// or above 30 minutes.
         /// </summary>
-        private List<DateTimeOffset> GetBusyTimesFlatList(List<BusyTime> busyTimesForEmployees)
+        private List<DateTimeOffset> GetBusyTimesOrderedList(List<BusyTime> busyTimesForEmployees)
         {
             var busyTimes = new List<DateTimeOffset>();
 
@@ -153,7 +153,7 @@ namespace Lime.Business
                 }
             }
 
-            return busyTimes.Distinct().ToList();
+            return busyTimes.Distinct().OrderBy(x => x).ToList();
         }
     }
 }
