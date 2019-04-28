@@ -1,28 +1,35 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
-  </div>
+  <v-app>
+    <top/>
+    <v-content class="content">
+      <router-view/>
+    </v-content>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import Top from '@/components/Top'
+export default {
+  name: 'App',
+  components: {
+    Top
+  }
 }
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+</script>
+
+<style lang="scss">
+.content{
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  .v-content__wrap{
+    background: #fff;
+    padding: 40px 35px;
+    @media (min-width: 1100px) {
+      margin-top:50px;
+      margin-bottom:50px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
     }
   }
 }

@@ -1,5 +1,9 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <v-container>
+      <v-layout justify-center>
+        <div class="headline">Developed by Mohammad Khalil.</div>
+      </v-layout>
+    </v-container>
   </div>
 </template>

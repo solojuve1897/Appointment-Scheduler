@@ -22,7 +22,7 @@ namespace Lime.Controllers
                 return BadRequest("Querystring must be at least 2 characters long.");
 
             var employees = _employeeLogic.GetEmployees(q);
-            return Ok(employees);
+            return Ok(new { query = q, matches = employees });
         }
     }
 }
