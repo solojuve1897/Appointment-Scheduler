@@ -40,7 +40,7 @@ namespace Lime.Data
                 if (values.Length < 2)
                     continue;
 
-                // line contains an Employee-record
+                // line contains a Employee-record
                 if (values.Length == 2)
                 {
                     var employee = new Employee
@@ -51,7 +51,7 @@ namespace Lime.Data
 
                     _employees.Add(employee);
                 }
-                // line contains an BusyTime-record
+                // line contains a BusyTime-record
                 else
                 {
                     var busyTime = new BusyTime
