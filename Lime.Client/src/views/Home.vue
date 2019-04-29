@@ -120,7 +120,7 @@
             <v-text-field
               class="pa-3"
               v-model="officeHourFrom"
-              label="Office Hour From"
+              label="Office Hours From"
               prepend-icon="access_time"
               readonly
               v-on="on"
@@ -156,7 +156,7 @@
             <v-text-field
               class="pa-3"
               v-model="officeHourTo"
-              label="Office Hour To"
+              label="Office Hours To"
               prepend-icon="access_time"
               readonly
               v-on="on"
@@ -218,7 +218,7 @@ export default {
       searching: false,
       earliestDate: '2015-01-01',
       earliestDateMenu: false,
-      latestDate: '2015-04-30',
+      latestDate: '2015-01-07',
       latestDateMenu: false,
       meetingLengthItems: [{ key: 30, value: '30 minutes' }, { key: 60, value: '1 hour' }, { key: 90, value: '1 hour 30 minutes' }, { key: 120, value: '2 hours' }],
       meetingLength: 60,
