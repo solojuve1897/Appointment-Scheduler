@@ -23,8 +23,8 @@ namespace Lime.Business
         /// </summary>
         public IList<SuggestionDto> GetSuggestions(SuggestionsQueryParams parameters)
         {
-            var fromDate = DateTimeOffset.Parse($"{parameters.FromDate} {parameters.OfficeHoursStart}");
-            var toDate = DateTimeOffset.Parse($"{parameters.ToDate} {parameters.OfficeHoursEnd}");
+            var fromDate = DateTimeOffset.Parse($"{parameters.FromDate} {parameters.OfficehoursStart}");
+            var toDate = DateTimeOffset.Parse($"{parameters.ToDate} {parameters.OfficehoursEnd}");
 
             var desiredSuggestions = InitializeSuggestions(parameters, fromDate, toDate);
             var availableSuggestions = GetAvailableSuggestions(desiredSuggestions, parameters, fromDate, toDate);
@@ -42,8 +42,8 @@ namespace Lime.Business
             while (fromDate <= toDate)
             {
                 var suggestion = new SuggestionDto { Date = fromDate.GetShortDate() };
-                var officeHoursStart = DateTimeOffset.Parse($"{fromDate.GetShortDate()} {parameters.OfficeHoursStart}");
-                var officeHoursEnds = DateTimeOffset.Parse($"{fromDate.GetShortDate()} {parameters.OfficeHoursEnd}").AddMinutes(-parameters.MeetingLength);
+                var officeHoursStart = DateTimeOffset.Parse($"{fromDate.GetShortDate()} {parameters.OfficehoursStart}");
+                var officeHoursEnds = DateTimeOffset.Parse($"{fromDate.GetShortDate()} {parameters.OfficehoursEnd}").AddMinutes(-parameters.MeetingLength);
 
                 while (officeHoursStart <= officeHoursEnds)
                 {
@@ -80,7 +80,7 @@ namespace Lime.Business
                     continue;
 
                 var availableStartTimes = new List<string>();
-                var officeHoursEnds = DateTimeOffset.Parse($"{suggestion.Date} {parameters.OfficeHoursEnd}");
+                var officeHoursEnds = DateTimeOffset.Parse($"{suggestion.Date} {parameters.OfficehoursEnd}");
 
                 foreach (var startTime in suggestion.StartTimes)
                 {

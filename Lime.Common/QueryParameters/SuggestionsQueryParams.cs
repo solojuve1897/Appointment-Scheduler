@@ -11,9 +11,9 @@ namespace Lime.Common
         [Required]
         public string ToDate { get; set; }
         [Required]
-        public string OfficeHoursStart { get; set; }
+        public string OfficehoursStart { get; set; }
         [Required]
-        public string OfficeHoursEnd { get; set; }
+        public string OfficehoursEnd { get; set; }
         [Required]
         public int MeetingLength { get; set; }
     }

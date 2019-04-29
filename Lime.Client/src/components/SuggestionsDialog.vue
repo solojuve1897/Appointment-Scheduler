@@ -11,7 +11,7 @@
         </v-flex>
      </v-layout>
      <v-layout class="pa-5" wrap>
-        <v-flex class="pa-3" md4 xs6 v-for="(startTime, index) in suggestions[page-1].startTimes" :key="index">
+        <v-flex class="pa-3" md4 xs6 v-for="(startTime, index) in suggestionStartTimes" :key="index">
           <v-card>
             <v-card-text class="subheading text-xs-center font-weight-bold">{{startTime}}</v-card-text>
           </v-card>
@@ -41,6 +41,14 @@ export default {
   data () {
     return {
       page: 1
+    }
+  },
+  computed: {
+    suggestionStartTimes () {
+      if (this.suggestions.length === 0) {
+        return []
+      }
+      return this.suggestions[this.page - 1].start_times ? this.suggestions[this.page - 1].start_times : this.suggestions[this.page - 1].startTimes
     }
   }
 }

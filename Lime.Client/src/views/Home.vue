@@ -197,7 +197,7 @@
       </v-card-actions>
     </v-card>
   </v-dialog>
-  <suggestions-dialog :suggestions="suggestions" :dialog="showSuggestions" @close="showSuggestions = false"/>
+  <suggestions-dialog v-if="showSuggestions" :suggestions="suggestions" :dialog="showSuggestions" @close="showSuggestions = false"/>
 </div>
 </template>
 
@@ -260,7 +260,7 @@ export default {
     },
     submit () {
       this.loading = true
-      this.getSuggestions({ employees: this.select, fromDate: this.earliestDate, toDate: this.latestDate, officeHoursStart: this.officeHourFrom, officeHoursEnd: this.officeHourTo, meetingLength: this.meetingLength })
+      this.getSuggestions({ employees: this.select, fromDate: this.earliestDate, toDate: this.latestDate, officehoursStart: this.officeHourFrom, officehoursEnd: this.officeHourTo, meetingLength: this.meetingLength })
         .then((result) => {
           this.loading = false
           this.suggestions = result.data.suggestions
